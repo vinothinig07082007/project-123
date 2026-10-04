@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA - Premium Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN PAGE ================= -->
+<section id="loginPage" class="login-page">
+
+    <div class="login-box">
+        <div class="login-logo">NOVA<span>CART</span></div>
+        <p class="login-subtitle">Premium Shopping Experience</p>
+
+        <form id="loginForm">
+            <input type="text" id="loginName" placeholder="Enter your name" required>
+            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            <input type="password" id="loginPassword" placeholder="Enter password" required>
+
+            <button type="submit" class="login-btn">LOGIN & SHOP</button>
+        </form>
+
+        <p class="login-note">Your shopping journey starts here.</p>
+    </div>
+
+</section>
+
+
+<!-- ================= MAIN WEBSITE ================= -->
+<div id="mainWebsite" class="hidden">
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <div class="logo">
+            NOVA<span>CART</span>
+        </div>
+
+        <nav>
+            <button onclick="showHome()">Home</button>
+            <button onclick="showCategory('All')">Shop</button>
+            <button onclick="showCategory('Fashion')">Fashion</button>
+            <button onclick="showCategory('Electronics')">Electronics</button>
+            <button onclick="showCategory('Beauty')">Beauty</button>
+            <button onclick="showCategory('Home')">Home & Living</button>
+        </nav>
+
+        <div class="nav-actions">
+            <button onclick="showWishlist()" class="nav-icon">♥</button>
+            <button onclick="showCart()" class="nav-icon">🛒 <b id="cartCount">0</b></button>
+            <button onclick="showProfile()" class="profile-btn">Profile</button>
+        </div>
+
+    </header>
+
+
+    <!-- ================= HOME ================= -->
+    <main id="homePage">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-content">
+                <p class="small-title">THE NEW SHOPPING EXPERIENCE</p>
+
+                <h1>
+                    SHOP BOLD.<br>
+                    SHOP <span>DIFFERENT.</span>
+                </h1>
+
+                <p>
+                    Discover fashion, electronics, beauty and lifestyle products
+                    at unbelievable prices.
+                </p>
+
+                <button class="shop-now" onclick="shopNow()">
+              SHOP NOW →
+                 </button>
+            </div>
+
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80" alt="Shopping">
+            </div>
+            
+
+        </section>
+        
+
+
+        <!-- MEGA SALE -->
+        <section class="mega-sale">
+
+            <div>
+                <p>LIMITED TIME OFFER</p>
+                <h2>MEGA SALE <span>UP TO 70% OFF</span></h2>
+                <p>Grab your favourite products before the offer ends.</p>
+            </div>
+
+            <button onclick="showCategory('All')">
+                EXPLORE DEALS
+            </button>
+
+        </section>
+
+
+        <!-- CATEGORIES -->
+        <section class="section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="red-text">EXPLORE</p>
+                    <h2>Shop By Category</h2>
+                </div>
+            </div>
+
+            <div class="category-grid">
+
+                <div class="category-card" onclick="showCategory('Fashion')">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80">
+                    <h3>Fashion</h3>
+                    <p>Trendy styles</p>
+                </div>
+
+                <div class="category-card" onclick="showCategory('Electronics')">
+                    <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=600&q=80">
+                    <h3>Electronics</h3>
+                    <p>Smart technology</p>
+                </div>
+
+                <div class="category-card" onclick="showCategory('Beauty')">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&q=80">
+                    <h3>Beauty</h3>
+                    <p>Beauty essentials</p>
+                </div>
+
+                <div class="category-card" onclick="showCategory('Home')">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80">
+                    <h3>Home & Living</h3>
+                    <p>Make home beautiful</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCTS -->
+        <section class="section">
+
+            <div class="section-heading product-heading">
+                <div>
+                    <p class="red-text">TRENDING NOW</p>
+                    <h2>Popular Products</h2>
+                </div>
+
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search products..."
+                        oninput="searchProducts()"
+                    >
+                </div>
+            </div>
+
+            <div id="productGrid" class="product-grid"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= CART PAGE ================= -->
+    <section id="cartPage" class="inner-page hidden">
+
+        <div class="page-title">
+            <p class="red-text">YOUR SHOPPING BAG</p>
+            <h1>Shopping Cart</h1>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div id="cartTotal" class="cart-total"></div>
+
+    </section>
+
+
+    <!-- ================= WISHLIST PAGE ================= -->
+    <section id="wishlistPage" class="inner-page hidden">
+
+        <div class="page-title">
+            <p class="red-text">SAVED PRODUCTS</p>
+            <h1>My Wishlist ♥</h1>
+        </div>
+
+        <div id="wishlistItems" class="product-grid"></div>
+
+    </section>
+
+
+    <!-- ================= PROFILE PAGE ================= -->
+    <section id="profilePage" class="page hidden">
+
+    <div class="profile-container">
+
+        <div class="profile-header">
+            <h1>My Profile</h1>
+            <p>Manage your account and delivery address</p>
+        </div>
+
+        <div class="profile-card">
+
+            <h2>👤 Personal Information</h2>
+
+            <div class="profile-info">
+                <div>
+                    <label>Name</label>
+                    <input type="text" id="profileName" placeholder="Enter your name">
+                </div>
+
+                <div>
+                    <label>Phone Number</label>
+                    <input type="tel" id="profilePhone" placeholder="Enter phone number">
+                </div>
+            </div>
+
+            <hr>
+
+            <h2> Delivery Address</h2>
+
+            <form id="addressForm" onsubmit="saveAddress(event)">
+
+                <div class="profile-info">
+
+                    <div>
+                        <label>House / Flat No.</label>
+                        <input
+                            type="text"
+                            id="houseNo"
+                            placeholder="Eg: 12/A"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label>Street / Area</label>
+                        <input
+                            type="text"
+                            id="street"
+                            placeholder="Eg: Anna Nagar"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label>City</label>
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter city"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label>State</label>
+                        <input
+                            type="text"
+                            id="state"
+                            placeholder="Enter state"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label>Pincode</label>
+                        <input
+                            type="text"
+                            id="pincode"
+                            placeholder="6 digit pincode"
+                            maxlength="6"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="address-full">
+                    <label>Landmark</label>
+                    <input
+                        type="text"
+                        id="landmark"
+                        placeholder="Eg: Near Bus Stand"
+                    >
+                </div>
+
+                <button type="submit" class="save-address-btn">
+                    💾 Save Address
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="saved-address-card hidden" id="savedAddressCard">
+
+            <div class="saved-title">
+                <h2>📦 Saved Address</h2>
+                <button onclick="editAddress()">Edit</button>
+            </div>
+
+            <p id="savedAddressText"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- ================= PRODUCT MODAL ================= -->
+    <div id="productModal" class="modal hidden">
+
+        <div class="modal-box">
+
+            <button class="close-modal" onclick="closeModal()">×</button>
+
+            <div class="modal-image">
+                <img id="modalImage" src="" alt="Product">
+            </div>
+
+            <div class="modal-info">
+
+                <p id="modalCategory" class="red-text"></p>
+
+                <h2 id="modalName"></h2>
+
+                <div class="rating">★★★★★ <span>4.8</span></div>
+
+                <p id="modalDescription"></p>
+
+                <div class="modal-price">
+                    <strong id="modalPrice"></strong>
+                    <del id="modalOldPrice"></del>
+                    <span id="modalDiscount"></span>
+                </div>
+
+                <button id="modalCartButton" class="add-cart-large">
+                    ADD TO CART
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div id="toast" class="toast">
+        Product added successfully!
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-logo">
+            BLOOD<span>CART</span>
+        </div>
+
+        <p>Premium products. Bold prices. Different shopping.</p>
+
+        <p class="copyright">
+            © 2026 BLOODCART. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+    
+
+const products = [
+
+    {
+        id: 1,
+        name: "Oversized Black Hoodie",
+        category: "Fashion",
+        price: 899,
+        oldPrice: 1499,
+        discount: "40% OFF",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80",
+        description: "Premium oversized hoodie with a comfortable modern fit."
+    },
+
+    {
+        id: 2,
+        name: "Classic Black Sneakers",
+        category: "Fashion",
+        price: 1299,
+        oldPrice: 2499,
+        discount: "48% OFF",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+        description: "Stylish everyday sneakers designed for comfort."
+    },
+
+    {
+        id: 3,
+        name: "Premium Sunglasses",
+        category: "Fashion",
+        price: 499,
+        oldPrice: 999,
+        discount: "50% OFF",
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
+        description: "Premium sunglasses with a bold fashionable design."
+    },
+
+    {
+        id: 4,
+        name: "Leather Crossbody Bag",
+        category: "Fashion",
+        price: 799,
+        oldPrice: 1599,
+        discount: "50% OFF",
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
+        description: "Compact crossbody bag for daily use."
+    },
+
+    {
+        id: 5,
+        name: "Minimal Wrist Watch",
+        category: "Fashion",
+        price: 999,
+        oldPrice: 1999,
+        discount: "50% OFF",
+        image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80",
+        description: "Elegant minimal wrist watch for everyday style."
+    },
+
+    {
+        id: 6,
+        name: "Wireless Headphones",
+        category: "Electronics",
+        price: 1799,
+        oldPrice: 2999,
+        discount: "40% OFF",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
+        description: "Wireless headphones with immersive sound."
+    },
+
+    {
+        id: 7,
+        name: "Smart Watch Pro",
+        category: "Electronics",
+        price: 2199,
+        oldPrice: 3999,
+        discount: "45% OFF",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
+        description: "Modern smartwatch for fitness and daily notifications."
+    },
+
+    {
+        id: 8,
+        name: "Wireless Keyboard",
+        category: "Electronics",
+        price: 1099,
+        oldPrice: 1799,
+        discount: "39% OFF",
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80",
+        description: "Slim wireless keyboard with comfortable typing."
+    },
+
+    {
+        id: 9,
+        name: "Gaming Mouse",
+        category: "Electronics",
+        price: 699,
+        oldPrice: 1299,
+        discount: "46% OFF",
+        image: "https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80",
+        description: "Fast responsive gaming mouse with ergonomic design."
+    },
+
+    {
+        id: 10,
+        name: "Portable Bluetooth Speaker",
+        category: "Electronics",
+        price: 899,
+        oldPrice: 1599,
+        discount: "44% OFF",
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
+        description: "Portable speaker with powerful audio."
+    },
+
+    {
+        id: 11,
+        name: "Premium Camera",
+        category: "Electronics",
+        price: 8999,
+        oldPrice: 12999,
+        discount: "31% OFF",
+        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80",
+        description: "Professional camera for photography enthusiasts."
+    },
+
+    {
+        id: 12,
+        name: "Smartphone",
+        category: "Electronics",
+        price: 14999,
+        oldPrice: 19999,
+        discount: "25% OFF",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
+        description: "Modern smartphone with a beautiful display."
+    },
+
+    {
+        id: 13,
+        name: "Matte Lipstick",
+        category: "Beauty",
+        price: 299,
+        oldPrice: 499,
+        discount: "40% OFF",
+        image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80",
+        description: "Long-lasting matte lipstick with rich colour."
+    },
+
+    {
+        id: 14,
+        name: "Perfume Collection",
+        category: "Beauty",
+        price: 799,
+        oldPrice: 1499,
+        discount: "47% OFF",
+        image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80",
+        description: "Elegant fragrance collection for everyday occasions."
+    },
+
+    {
+        id: 15,
+        name: "Makeup Brush Set",
+        category: "Beauty",
+        price: 449,
+        oldPrice: 899,
+        discount: "50% OFF",
+        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80",
+        description: "Complete makeup brush set for smooth application."
+    },
+
+    {
+        id: 16,
+        name: "Skincare Essentials",
+        category: "Beauty",
+        price: 699,
+        oldPrice: 1199,
+        discount: "42% OFF",
+        image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=80",
+        description: "Daily skincare essentials for your routine."
+    },
+
+    {
+        id: 17,
+        name: "Modern Table Lamp",
+        category: "Home",
+        price: 599,
+        oldPrice: 999,
+        discount: "40% OFF",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",
+        description: "Modern decorative lamp for bedroom and living spaces."
+    },
+
+    {
+        id: 18,
+        name: "Luxury Sofa",
+        category: "Home",
+        price: 12999,
+        oldPrice: 19999,
+        discount: "35% OFF",
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80",
+        description: "Comfortable premium sofa with modern styling."
+    },
+
+    {
+        id: 19,
+        name: "Decorative Plant",
+        category: "Home",
+        price: 399,
+        oldPrice: 699,
+        discount: "43% OFF",
+        image: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=700&q=80",
+        description: "Beautiful decorative plant for your interior."
+    },
+
+    {
+        id: 20,
+        name: "Premium Coffee Mug",
+        category: "Home",
+        price: 299,
+        oldPrice: 499,
+        discount: "40% OFF",
+        image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=700&q=80",
+        description: "Premium ceramic mug for coffee and tea."
+    },
+
+    {
+        id: 21,
+        name: "Modern Backpack",
+        category: "Fashion",
+        price: 899,
+        oldPrice: 1599,
+        discount: "44% OFF",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
+        description: "Spacious modern backpack for college and travel."
+    },
+
+    {
+        id: 22,
+        name: "Running Shoes",
+        category: "Fashion",
+        price: 1499,
+        oldPrice: 2499,
+        discount: "40% OFF",
+        image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=80",
+        description: "Lightweight running shoes for active lifestyles."
+    },
+
+    {
+        id: 23,
+        name: "Tablet",
+        category: "Electronics",
+        price: 8999,
+        oldPrice: 11999,
+        discount: "25% OFF",
+        image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=700&q=80",
+        description: "Slim tablet for entertainment and productivity."
+    },
+
+    {
+        id: 24,
+        name: "Smart LED Light",
+        category: "Home",
+        price: 799,
+        oldPrice: 1299,
+        discount: "38% OFF",
+        image: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&w=700&q=80",
+        description: "Smart decorative lighting for your room."
+    }
+
+];
+
+
+let cart = JSON.parse(localStorage.getItem("bloodCart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("bloodWishlist")) || [];
+let currentUser = JSON.parse(localStorage.getItem("bloodUser")) || null;
+
+
+/* ================= LOGIN ================= */
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("loginName").value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
+
+    currentUser = {
+        name: name,
+        email: email
+    };
+
+    localStorage.setItem("bloodUser", JSON.stringify(currentUser));
+
+    openWebsite();
+
+});
+
+
+function openWebsite() {
+
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("mainWebsite").classList.remove("hidden");
+
+    showHome();
+
+    updateProfile();
+
+}
+
+
+/* ================= PAGE CONTROL ================= */
+
+function hideAllPages() {
+
+    document.getElementById("homePage").classList.add("hidden");
+    document.getElementById("cartPage").classList.add("hidden");
+    document.getElementById("wishlistPage").classList.add("hidden");
+    document.getElementById("profilePage").classList.add("hidden");
+
+}
+
+
+function showHome() {
+
+    hideAllPages();
+
+    document.getElementById("homePage").classList.remove("hidden");
+
+    renderProducts(products);
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+function showCategory(category) {
+
+    hideAllPages();
+
+    document.getElementById("homePage").classList.remove("hidden");
+
+    let filteredProducts;
+
+    if (category === "All") {
+        filteredProducts = products;
+    } else {
+        filteredProducts = products.filter(product => product.category === category);
+    }
+
+    renderProducts(filteredProducts);
+
+    window.scrollTo({
+        top: document.querySelector(".section").offsetTop,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ================= PRODUCT DISPLAY ================= */
+
+function renderProducts(list) {
+
+    const grid = document.getElementById("productGrid");
+
+    grid.innerHTML = "";
+
+    if (list.length === 0) {
+
+        grid.innerHTML = `
+            <div class="no-products">
+                <h2>No products found</h2>
+                <p>Try another search.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach(product => {
+
+        const isWishlisted = wishlist.includes(product.id);
+
+        const card = document.createElement("div");
+
+        card.className = "product-card";
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <img src="${product.image}" alt="${product.name}">
+
+                <span class="offer-badge">${product.discount}</span>
+
+                <button
+                    class="wishlist-btn ${isWishlisted ? "active" : ""}"
+                    onclick="toggleWishlist(${product.id})"
+                >
+                    ${isWishlisted ? "♥" : "♡"}
+                </button>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <p class="product-category">${product.category}</p>
+
+                <h3>${product.name}</h3>
+
+                <div class="rating">
+                    ★★★★★
+                    <span>4.8</span>
+                </div>
+
+                <div class="price-row">
+                    <strong>₹${product.price.toLocaleString("en-IN")}</strong>
+                    <del>₹${product.oldPrice.toLocaleString("en-IN")}</del>
+                </div>
+
+                <div class="product-buttons">
+
+                    <button
+                        class="view-btn"
+                        onclick="openProduct(${product.id})"
+                    >
+                        VIEW
+                    </button>
+
+                    <button
+                        class="cart-btn"
+                        onclick="addToCart(${product.id})"
+                    >
+                        ADD CART
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchProducts() {
+
+    const value = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const result = products.filter(product =>
+
+        product.name.toLowerCase().includes(value) ||
+
+        product.category.toLowerCase().includes(value)
+
+    );
+
+    renderProducts(result);
+
+}
+
+
+/* ================= PRODUCT MODAL ================= */
+
+function openProduct(id) {
+
+    const product = products.find(item => item.id === id);
+
+    if (!product) return;
+
+    document.getElementById("modalImage").src = product.image;
+    document.getElementById("modalCategory").textContent = product.category;
+    document.getElementById("modalName").textContent = product.name;
+    document.getElementById("modalDescription").textContent = product.description;
+
+    document.getElementById("modalPrice").textContent =
+        "₹" + product.price.toLocaleString("en-IN");
+
+    document.getElementById("modalOldPrice").textContent =
+        "₹" + product.oldPrice.toLocaleString("en-IN");
+
+    document.getElementById("modalDiscount").textContent =
+        product.discount;
+
+
+    document.getElementById("modalCartButton").onclick = function() {
+
+        addToCart(product.id);
+
+        closeModal();
+
+    };
+
+
+    document.getElementById("productModal").classList.remove("hidden");
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("productModal").classList.add("hidden");
+
+}
+
+
+/* ================= CART ================= */
+
+function addToCart(id) {
+
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+
+        existing.quantity += 1;
+
+    } else {
+
+        cart.push({
+            id: id,
+            quantity: 1
+        });
+
+    }
+
+    saveCart();
+
+    updateCartCount();
+
+    showToast("Product added to cart!");
+
+}
+
+
+function removeFromCart(id) {
+
+    cart = cart.filter(item => item.id !== id);
+
+    saveCart();
+
+    showCart();
+
+}
+
+
+function changeQuantity(id, amount) {
+
+    const item = cart.find(product => product.id === id);
+
+    if (!item) return;
+
+    item.quantity += amount;
+
+    if (item.quantity <= 0) {
+
+        cart = cart.filter(product => product.id !== id);
+
+    }
+
+    saveCart();
+
+    showCart();
+
+}
+
+
+function saveCart() {
+
+    localStorage.setItem("bloodCart", JSON.stringify(cart));
+
+}
+
+
+function updateCartCount() {
+
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    document.getElementById("cartCount").textContent = total;
+
+    document.getElementById("profileCartCount").textContent = total;
+
+}
+
+
+/* ================= CART PAGE ================= */
+
+function showCart() {
+
+    hideAllPages();
+
+    document.getElementById("cartPage").classList.remove("hidden");
+
+    const container = document.getElementById("cartItems");
+
+    const totalBox = document.getElementById("cartTotal");
+
+    if (cart.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-box">
+                <h2>Your cart is empty</h2>
+                <p>Add some amazing products to continue shopping.</p>
+                <button onclick="showCategory('All')" class="shop-now">
+                    START SHOPPING
+                </button>
+            </div>
+        `;
+
+        totalBox.innerHTML = "";
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+    container.innerHTML = "";
+
+    cart.forEach(item => {
+
+        const product = products.find(product => product.id === item.id);
+
+        if (!product) return;
+
+        const itemTotal = product.price * item.quantity;
+
+        total += itemTotal;
+
+        const row = document.createElement("div");
+
+        row.className = "cart-item";
+
+        row.innerHTML = `
+
+            <img src="${product.image}" alt="${product.name}">
+
+            <div class="cart-details">
+
+                <p class="product-category">${product.category}</p>
+
+                <h3>${product.name}</h3>
+
+                <strong>₹${product.price.toLocaleString("en-IN")}</strong>
+
+            </div>
+
+
+            <div class="quantity">
+
+                <button onclick="changeQuantity(${product.id}, -1)">−</button>
+
+                <span>${item.quantity}</span>
+
+                <button onclick="changeQuantity(${product.id}, 1)">+</button>
+
+            </div>
+
+
+            <div class="cart-item-total">
+                ₹${itemTotal.toLocaleString("en-IN")}
+            </div>
+
+
+            <button
+                class="remove-btn"
+                onclick="removeFromCart(${product.id})"
+            >
+                REMOVE
+            </button>
+
+        `;
+
+        container.appendChild(row);
+
+    });
+
+
+    totalBox.innerHTML = `
+
+        <div>
+            <span>Subtotal</span>
+            <strong>₹${total.toLocaleString("en-IN")}</strong>
+        </div>
+
+        <div>
+            <span>Delivery</span>
+            <strong class="free">FREE</strong>
+        </div>
+
+        <hr>
+
+        <div class="grand-total">
+            <span>Total</span>
+            <strong>₹${total.toLocaleString("en-IN")}</strong>
+        </div>
+
+        <button class="checkout-btn" onclick="checkout()">
+            PROCEED TO CHECKOUT
+        </button>
+
+    `;
+
+}
+
+
+/* ================= WISHLIST ================= */
+
+function toggleWishlist(id) {
+
+    if (wishlist.includes(id)) {
+
+        wishlist = wishlist.filter(item => item !== id);
+
+        showToast("Removed from wishlist");
+
+    } else {
+
+        wishlist.push(id);
+
+        showToast("Added to wishlist ♥");
+
+    }
+
+    localStorage.setItem(
+        "bloodWishlist",
+        JSON.stringify(wishlist)
+    );
+
+    updateProfile();
+
+    renderProducts(products);
+
+}
+
+
+function showWishlist() {
+
+    hideAllPages();
+
+    document.getElementById("wishlistPage").classList.remove("hidden");
+
+    const container = document.getElementById("wishlistItems");
+
+    const items = products.filter(product =>
+        wishlist.includes(product.id)
+    );
+
+    if (items.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-box">
+                <h2>Your wishlist is empty</h2>
+                <p>Save products you love here.</p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+    renderWishlist(items);
+
+}
+
+
+function renderWishlist(items) {
+
+    const container = document.getElementById("wishlistItems");
+
+    container.innerHTML = "";
+
+    items.forEach(product => {
+
+        const card = document.createElement("div");
+
+        card.className = "product-card";
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <img src="${product.image}" alt="${product.name}">
+
+                <span class="offer-badge">${product.discount}</span>
+
+                <button
+                    class="wishlist-btn active"
+                    onclick="toggleWishlist(${product.id}); showWishlist();"
+                >
+                    ♥
+                </button>
+
+            </div>
+
+            <div class="product-info">
+
+                <p class="product-category">${product.category}</p>
+
+                <h3>${product.name}</h3>
+
+                <div class="price-row">
+                    <strong>₹${product.price.toLocaleString("en-IN")}</strong>
+                    <del>₹${product.oldPrice.toLocaleString("en-IN")}</del>
+                </div>
+
+                <div class="product-buttons">
+
+                    <button
+                        class="view-btn"
+                        onclick="openProduct(${product.id})"
+                    >
+                        VIEW
+                    </button>
+
+                    <button
+                        class="cart-btn"
+                        onclick="addToCart(${product.id})"
+                    >
+                        ADD CART
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+/* ================= PROFILE ================= */
+
+function showProfile() {
+
+    hideAllPages();
+
+    document.getElementById("profilePage").classList.remove("hidden");
+
+    updateProfile();
+
+}
+
+
+function updateProfile() {
+
+    if (!currentUser) return;
+
+    document.getElementById("profileName").textContent =
+        currentUser.name;
+
+    document.getElementById("profileEmail").textContent =
+        currentUser.email;
+
+    document.getElementById("profileAvatar").textContent =
+        currentUser.name.charAt(0).toUpperCase();
+
+    document.getElementById("profileWishCount").textContent =
+        wishlist.length;
+
+    updateCartCount();
+
+}
+
+
+/* ================= CHECKOUT ================= */
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        showToast("Your cart is empty!");
+
+        return;
+
+    }
+
+    alert(
+        "Order placed successfully! 🎉\n\nThank you for shopping with BLOODCART."
+    );
+
+    cart = [];
+
+    saveCart();
+
+    updateCartCount();
+
+    showCart();
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout() {
+
+    localStorage.removeItem("bloodUser");
+
+    currentUser = null;
+
+    document.getElementById("mainWebsite").classList.add("hidden");
+
+    document.getElementById("loginPage").classList.remove("hidden");
+
+    document.getElementById("loginForm").reset();
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(function() {
+
+        toast.classList.remove("show");
+
+    }, 2000);
+
+}
+
+
+/* ================= CLOSE MODAL ================= */
+
+document.getElementById("productModal").addEventListener("click", function(event) {
+
+    if (event.target === this) {
+
+        closeModal();
+
+    }
+
+});
+
+
+/* ================= INITIAL LOAD ================= */
+
+updateCartCount();
+
+if (currentUser) {
+
+    openWebsite();
+
+}
+
+</script>
+
+</body>
+</html>
